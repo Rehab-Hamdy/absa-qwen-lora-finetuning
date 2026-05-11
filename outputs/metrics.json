@@ -1,18 +1,18 @@
 {
   "base": {
-    "json_validity_rate": 0.9866,
-    "precision": 0.5039,
-    "recall": 0.5752,
-    "f1": 0.5372,
-    "sentiment_accuracy": 0.5462,
+    "json_validity_rate": 1.0,
+    "precision": 0.5354,
+    "recall": 0.5991,
+    "f1": 0.5655,
+    "sentiment_accuracy": 0.5441,
     "n_samples": 149
   },
   "fine_tuned": {
     "json_validity_rate": 1.0,
-    "precision": 0.8623,
-    "recall": 0.6372,
-    "f1": 0.7328,
-    "sentiment_accuracy": 0.6736,
+    "precision": 0.8834,
+    "recall": 0.6344,
+    "f1": 0.7385,
+    "sentiment_accuracy": 0.7639,
     "n_samples": 149
   }
 }

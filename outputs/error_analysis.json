@@ -1,210 +1,254 @@
 {
   "missed_aspects": [
     {
-      "review": "Looks nice, but has a horribly cheap feel.",
-      "missed_term": "looks",
-      "gold_sentiment": "positive",
+      "review": "It started out by randomly ceasing to charge when it was plugged in (mousing over the battery icon would read, for example, \"74%, plugged in, not charging\"), requiring me to unplug it and plug it back in several times to get it to charge.",
+      "missed_term": "charging",
+      "gold_sentiment": "negative",
       "predicted": [
         {
-          "term": "feel",
+          "term": "charge",
           "sentiment": "negative"
+        },
+        {
+          "term": "plugged in",
+          "sentiment": "neutral"
         }
       ],
       "gold": [
         {
-          "term": "feel",
+          "term": "charging",
           "sentiment": "negative"
         },
         {
-          "term": "Looks",
+          "term": "charge",
+          "sentiment": "negative"
+        },
+        {
+          "term": "charge",
+          "sentiment": "neutral"
+        }
+      ]
+    },
+    {
+      "review": "This computer is exceptionally thin for it's screen size and processing power.",
+      "missed_term": "screen size",
+      "gold_sentiment": "positive",
+      "predicted": [
+        {
+          "term": "processing power",
+          "sentiment": "positive"
+        }
+      ],
+      "gold": [
+        {
+          "term": "screen size",
+          "sentiment": "positive"
+        },
+        {
+          "term": "processing power",
           "sentiment": "positive"
         }
       ]
     },
     {
-      "review": "There was a little difficulty doing the migration as the firewire cable system can't be used with the iBook.",
-      "missed_term": "ibook",
+      "review": "Needs Power and Mouse Cable to Plug in back instead of side, In the way of operating a mouse in small area.",
+      "missed_term": "mouse",
+      "gold_sentiment": "negative",
+      "predicted": [
+        {
+          "term": "Power",
+          "sentiment": "neutral"
+        },
+        {
+          "term": "Mouse Cable",
+          "sentiment": "neutral"
+        }
+      ],
+      "gold": [
+        {
+          "term": "Mouse Cable",
+          "sentiment": "negative"
+        },
+        {
+          "term": "mouse",
+          "sentiment": "negative"
+        }
+      ]
+    },
+    {
+      "review": "This is likely due to poor grounding and isolation between the components, and I'm hoping that it can be fixed with a ground loop isolator, but I still expected better product quality for this price range.",
+      "missed_term": "components",
+      "gold_sentiment": "negative",
+      "predicted": [
+        {
+          "term": "grounding",
+          "sentiment": "negative"
+        },
+        {
+          "term": "isolation",
+          "sentiment": "negative"
+        }
+      ],
+      "gold": [
+        {
+          "term": "components",
+          "sentiment": "negative"
+        },
+        {
+          "term": "ground loop isolator",
+          "sentiment": "neutral"
+        },
+        {
+          "term": "price range",
+          "sentiment": "negative"
+        },
+        {
+          "term": "quality",
+          "sentiment": "negative"
+        }
+      ]
+    },
+    {
+      "review": "This is likely due to poor grounding and isolation between the components, and I'm hoping that it can be fixed with a ground loop isolator, but I still expected better product quality for this price range.",
+      "missed_term": "ground loop isolator",
       "gold_sentiment": "neutral",
       "predicted": [
         {
-          "term": "firewire cable system",
-          "sentiment": "neutral"
-        }
-      ],
-      "gold": [
-        {
-          "term": "firewire cable system",
+          "term": "grounding",
           "sentiment": "negative"
         },
         {
-          "term": "iBook",
-          "sentiment": "neutral"
-        }
-      ]
-    },
-    {
-      "review": "The best thing about this laptop is the price along with some of the newer features.",
-      "missed_term": "features",
-      "gold_sentiment": "positive",
-      "predicted": [
-        {
-          "term": "price",
-          "sentiment": "positive"
+          "term": "isolation",
+          "sentiment": "negative"
         }
       ],
       "gold": [
         {
-          "term": "price",
-          "sentiment": "positive"
+          "term": "components",
+          "sentiment": "negative"
         },
         {
-          "term": "features",
-          "sentiment": "positive"
-        }
-      ]
-    },
-    {
-      "review": "Mac also has many apps and programs that are quite cheap or free.",
-      "missed_term": "programs",
-      "gold_sentiment": "positive",
-      "predicted": [
-        {
-          "term": "apps",
+          "term": "ground loop isolator",
           "sentiment": "neutral"
-        }
-      ],
-      "gold": [
-        {
-          "term": "apps",
-          "sentiment": "positive"
         },
         {
-          "term": "programs",
-          "sentiment": "positive"
-        }
-      ]
-    },
-    {
-      "review": "I do transcription work on the side, and the flatline keyboard makes typing quick and easy as well.",
-      "missed_term": "flatline keyboard",
-      "gold_sentiment": "positive",
-      "predicted": [
+          "term": "price range",
+          "sentiment": "negative"
+        },
         {
-          "term": "keyboard",
-          "sentiment": "positive"
-        }
-      ],
-      "gold": [
-        {
-          "term": "flatline keyboard",
-          "sentiment": "positive"
+          "term": "quality",
+          "sentiment": "negative"
         }
       ]
     }
   ],
   "wrong_sentiment": [
     {
-      "review": "There was a little difficulty doing the migration as the firewire cable system can't be used with the iBook.",
-      "term": "firewire cable system",
-      "gold_sentiment": "negative",
-      "pred_sentiment": "neutral",
+      "review": "It started out by randomly ceasing to charge when it was plugged in (mousing over the battery icon would read, for example, \"74%, plugged in, not charging\"), requiring me to unplug it and plug it back in several times to get it to charge.",
+      "term": "charge",
+      "gold_sentiment": "neutral",
+      "pred_sentiment": "negative",
       "predicted": [
         {
-          "term": "firewire cable system",
-          "sentiment": "neutral"
-        }
-      ],
-      "gold": [
-        {
-          "term": "firewire cable system",
+          "term": "charge",
           "sentiment": "negative"
         },
         {
-          "term": "iBook",
-          "sentiment": "neutral"
-        }
-      ]
-    },
-    {
-      "review": "Mac also has many apps and programs that are quite cheap or free.",
-      "term": "apps",
-      "gold_sentiment": "positive",
-      "pred_sentiment": "neutral",
-      "predicted": [
-        {
-          "term": "apps",
+          "term": "plugged in",
           "sentiment": "neutral"
         }
       ],
       "gold": [
         {
-          "term": "apps",
-          "sentiment": "positive"
+          "term": "charging",
+          "sentiment": "negative"
         },
         {
-          "term": "programs",
-          "sentiment": "positive"
+          "term": "charge",
+          "sentiment": "negative"
+        },
+        {
+          "term": "charge",
+          "sentiment": "neutral"
         }
       ]
     },
     {
-      "review": "I saw walmart had the same computer for about $650 but still knowing what I know now,I would not buy it at that price.",
-      "term": "price",
+      "review": "One suggestion I do have, is to not bother getting Microsoft office for the mac expecting it will work just like you knew it to on a PC.",
+      "term": "microsoft office for the mac",
       "gold_sentiment": "negative",
       "pred_sentiment": "neutral",
       "predicted": [
         {
-          "term": "price",
+          "term": "Microsoft office for the mac",
           "sentiment": "neutral"
         }
       ],
       "gold": [
         {
-          "term": "price",
+          "term": "Microsoft office for the mac",
           "sentiment": "negative"
         }
       ]
     },
     {
-      "review": "You can do it all on this bad boy but the main thing this netbook was desinged for was surfing the web and boy o boy does it ever.",
-      "term": "surfing the web",
-      "gold_sentiment": "positive",
-      "pred_sentiment": "neutral",
-      "predicted": [
-        {
-          "term": "surfing the web",
-          "sentiment": "neutral"
-        }
-      ],
-      "gold": [
-        {
-          "term": "surfing the web",
-          "sentiment": "positive"
-        }
-      ]
-    },
-    {
-      "review": "The battery life was supposed to be 6 hours, but even if I ran off the battery with the high effeciency setting the battery would only last me on average about 2.5 to 3 hours.",
-      "term": "battery life",
+      "review": "COMPUTER HAS BEEN AT SERVICE FACILITY MORE THAN IN MY HANDS.",
+      "term": "service facility",
       "gold_sentiment": "negative",
       "pred_sentiment": "neutral",
       "predicted": [
         {
-          "term": "battery life",
+          "term": "SERVICE FACILITY",
           "sentiment": "neutral"
         }
       ],
       "gold": [
         {
-          "term": "battery life",
+          "term": "SERVICE FACILITY",
           "sentiment": "negative"
-        },
+        }
+      ]
+    },
+    {
+      "review": "Needs Power and Mouse Cable to Plug in back instead of side, In the way of operating a mouse in small area.",
+      "term": "mouse cable",
+      "gold_sentiment": "negative",
+      "pred_sentiment": "neutral",
+      "predicted": [
         {
-          "term": "battery",
+          "term": "Power",
           "sentiment": "neutral"
         },
         {
-          "term": "battery",
+          "term": "Mouse Cable",
+          "sentiment": "neutral"
+        }
+      ],
+      "gold": [
+        {
+          "term": "Mouse Cable",
+          "sentiment": "negative"
+        },
+        {
+          "term": "mouse",
+          "sentiment": "negative"
+        }
+      ]
+    },
+    {
+      "review": "Also consider the MS Office apps are all trial versions, hope you have your own copies.",
+      "term": "ms office apps",
+      "gold_sentiment": "negative",
+      "pred_sentiment": "neutral",
+      "predicted": [
+        {
+          "term": "MS Office apps",
+          "sentiment": "neutral"
+        }
+      ],
+      "gold": [
+        {
+          "term": "MS Office apps",
           "sentiment": "negative"
         }
       ]
