@@ -14,7 +14,7 @@
 - [Fine-Tuning with LoRA](#fine-tuning-with-lora)
 - [Prompt Engineering](#prompt-engineering)
 - [Structured Output & Validation](#structured-output--validation)
-- [Training Details](#training-details)
+- [Training Summary](#training-summary)
 - [Evaluation](#evaluation)
 - [Error Analysis](#error-analysis)
 - [Deployment](#deployment)
@@ -42,15 +42,17 @@ The system is built on top of **Qwen2.5-1.5B-Instruct** fine-tuned with **LoRA a
 
 ## Results
 
+## Results
+
 | Metric | Base Model (Zero-Shot) | Fine-Tuned (LoRA) | Δ Improvement |
 |--------|----------------------|-------------------|---------------|
-| JSON Validity Rate | 98.66% | **100.00%** | +1.34% |
-| Precision | 50.39% | **86.23%** | +35.84% |
-| Recall | 57.52% | **63.72%** | +6.20% |
-| F1 Score | 53.72% | **73.28%** | +19.56% |
-| Sentiment Accuracy | 54.62% | **67.36%** | +12.74% |
+| JSON Validity | 100.00% | 100.00% | +0.00% |
+| Precision | 53.54% | **88.34%** | +34.80% |
+| Recall | 59.91% | **63.44%** | +3.53% |
+| F1 Score | 56.55% | **73.85%** | +17.30% |
+| Sentiment Accuracy | 54.41% | **76.39%** | +21.98% |
 
-> Evaluated on 149 held-out test reviews from the SemEval Laptop dataset.
+> Evaluated on the SemEval Laptop dataset using a stratified train/validation/test split.
 
 ### Training Curves
 
@@ -110,26 +112,42 @@ NLU_Finetuning/
 1. **Normalize** — lowercase column names, standardize polarity labels
 2. **Aggregate** — group flat rows by sentence, collecting all aspect-sentiment pairs into a list
 3. **Deduplicate** — remove duplicate `(term, sentiment)` pairs per sentence
-4. **Oversample** — conflict class repeated 3× (36 → 108 sentences) to address class imbalance
+4. **Oversample** — The rare `conflict` class was oversampled 3× to reduce severe class imbalance and improve exposure during fine-tuning.
 5. **Split** — 80/10/10 train/val/test split (1,190 / 149 / 149 reviews)
 
-### Dataset Statistics
+### Stratified Train / Validation / Test Split
 
-| Split | Reviews | Aspects |
-|-------|---------|---------|
-| Train (before oversampling) | 1,190 | 1,855 |
-| Train (after oversampling) | 1,262 | ~1,970 |
-| Validation | 149 | 239 |
-| Test | 149 | 227 |
+A custom stratified splitting strategy was implemented to preserve aspect-level sentiment distributions across all splits.
 
-**Sentiment distribution (train):**
+#### Why stratification?
 
-| Class | Count (raw) |
-|-------|------------|
-| positive | 782 |
-| negative | 665 |
-| neutral | 371 |
-| conflict | 37 → 111 (after oversampling) |
+The dataset contains a highly imbalanced `conflict` class with very few examples.  
+A purely random split could completely remove rare aspect combinations from the validation or test sets.
+
+#### Solution
+
+Each review was assigned a signature encoding its aspect composition:
+
+```text
+p2_n1_u0_c0
+```
+## Dataset Statistics
+
+| Metric | Value |
+|--------|------|
+| Raw Aspect Rows | 2,358 |
+| Aggregated Reviews | 1,488 |
+| Sentiment Classes | 4 |
+| Split Ratio | 80 / 10 / 10 |
+
+### Aspect Distribution per Split
+
+| Sentiment | Train | Validation | Test |
+|-----------|------|------------|------|
+| positive | 790 | 91 | 95 |
+| negative | 660 | 95 | 89 |
+| neutral | 372 | 45 | 39 |
+| conflict | 35 | 4 | 6 |
 
 **Top aspect terms:** `price`, `screen`, `battery life`, `keyboard`, `battery`, `use`, `software`, `programs`
 
@@ -300,39 +318,16 @@ The `validate_output()` function handles all common LLM output quirks:
 
 ---
 
-## Training Details
+### Training Summary
 
-### Data Collator
-
-A custom `CausalLMDataCollator` handles batching:
-
-```python
-class CausalLMDataCollator:
-    def __call__(self, features):
-        # Pads input_ids with pad_token_id
-        # Pads attention_mask with 0
-        # Pads labels with -100
-        # Pads to multiple of 8 for efficiency
-```
-
-### Training Log (Selected Steps)
-
-| Step | Train Loss | Eval Loss |
-|------|-----------|-----------|
-| 50 | 0.116 | 0.121 |
-| 100 | 0.091 | 0.113 |
-| 150 | 0.093 | 0.109 |
-| 200 | 0.092 | 0.111 |
-| **250** | **0.070** | **0.095** ← best |
-| 300 | 0.084 | 0.099 |
-| 400 | 0.036 | 0.101 |
-| 500 | 0.024 | 0.098 |
-| 600 | 0.016 | 0.099 |
-
-- **Best checkpoint:** Step 250 (eval loss = 0.0954)
-- **Final train loss:** 0.0654
-- **Training runtime:** 1,976 seconds (~33 min)
-- **Throughput:** 1.28 samples/second
+| Metric | Value |
+|--------|------|
+| Best Eval Loss | ~0.072 |
+| Final Train Loss | ~0.029 |
+| Best Checkpoint | Step 300 |
+| GPU | NVIDIA Tesla T4 |
+| LoRA Trainable Params | ~1.7M |
+| Total Model Params | 1.5B |
 
 ### Pre-Training Sanity Checks
 
@@ -417,7 +412,11 @@ The model finds the correct term but assigns the wrong polarity — usually defa
 - **Neutral bias:** The model occasionally defaults to `neutral` for implicit or sarcastic sentiment
 - **Multi-aspect gaps:** Reviews with many aspects sometimes have secondary ones missed
 - **Partial term matching:** `flatline keyboard` collapsed to just `keyboard`
-- **Conflict class (0.00 accuracy):** Despite 3× oversampling, the conflict class remains unlearned — it requires deeper contextual reasoning
+- **Conflict class (0.00 accuracy):** remains the most challenging category despite oversampling due to:
+        - extremely limited data,
+        - implicit mixed sentiment,
+        - and higher contextual reasoning requirements.
+  This highlights a common limitation of small-scale instruction tuning on rare compositional sentiment patterns.
 
 ---
 
