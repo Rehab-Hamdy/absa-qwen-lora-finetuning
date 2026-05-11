@@ -88,7 +88,10 @@ NLU_Finetuning/
 │   ├── sentiment_breakdown.png
 │   ├── eda.png
 │   └── eda_after_oversampling.png
-└── notebook.ipynb                   # End-to-end pipeline notebook
+├── deployment/
+│   ├── app.py
+│   ├── inference.py
+└── ABSA_Qwen.ipynb                   # End-to-end pipeline notebook
 ```
 
 ---
